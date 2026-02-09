@@ -1,11 +1,11 @@
-export const Header = ({ filterBy, querry }) => (
+export const Header = ({ filterBy, query }) => (
   <div className="field">
     <label htmlFor="search-query" className="label">
       Search movie
     </label>
     <div className="control">
       <input
-        value={querry}
+        value={query}
         type="text"
         id="search-query"
         className="input"

@@ -4,30 +4,28 @@ import { MoviesList } from './components/MoviesList';
 import moviesFromServer from './api/movies.json';
 import { Header } from './components/Header/Header';
 
-function getPreparedMovies(movies, querry) {
-  let preparedMovies = [...movies];
+function getPreparedMovies(movies, query) {
+  const normalizedQuery = query.trim().toLowerCase();
 
-  if (querry) {
-    preparedMovies = preparedMovies.filter(
-      movie =>
-        movie.title.toLowerCase().includes(querry.toLowerCase().trim()) ||
-        movie.description.toLowerCase().includes(querry.toLowerCase().trim()),
-    );
-  }
+  const preparedMovies = [...movies].filter(
+    movie =>
+      movie.title.toLowerCase().includes(normalizedQuery) ||
+      movie.description.toLowerCase().includes(normalizedQuery),
+  );
 
   return preparedMovies;
 }
 
 export const App = () => {
-  const [querry, setQuerry] = useState('');
+  const [query, setQuery] = useState('');
 
-  const visibleMovies = getPreparedMovies(moviesFromServer, querry);
+  const visibleMovies = getPreparedMovies(moviesFromServer, query);
 
   return (
     <div className="page">
       <div className="page-content">
         <div className="box">
-          <Header filterBy={filter => setQuerry(filter)} querry={querry} />
+          <Header filterBy={filter => setQuery(filter)} query={query} />
         </div>
 
         <MoviesList movies={visibleMovies} />
