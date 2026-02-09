@@ -7,7 +7,7 @@ import { Header } from './components/Header/Header';
 function getPreparedMovies(movies, query) {
   const normalizedQuery = query.trim().toLowerCase();
 
-  const preparedMovies = [...movies].filter(
+  const preparedMovies = movies.filter(
     movie =>
       movie.title.toLowerCase().includes(normalizedQuery) ||
       movie.description.toLowerCase().includes(normalizedQuery),
